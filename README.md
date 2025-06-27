@@ -19,7 +19,7 @@ importing data, handeling null values, and solving a variety of business problem
 
 - **Database Setup** :  creation of the `zoomato_db` and the required tables.   
 - **Data import** : inserting sample data into the tables.   
-- **Data cleaning** : Handling null values and insuring data integrety.   
+- **Data cleaning** : Handling null values and insuring data integrity.   
 - **Business problems** : solving 20 specific business problem using SQL queries.
 
 ### Database setup  
@@ -103,7 +103,7 @@ CONSTRAINT fk_riders FOREIGN KEY(rider_id) REFERENCES riders(rider_id)
 
 **Data cleaning and handling null values**   
 
-Before performing analysis, i ensured that the data ws cleaned and free from null values where necessary, for instance :   
+Before performing analysis, i ensured that the data was cleaned and free from null values where necessary, for instance :   
 ```sql
 --checking for null values in the restaurants table
 SELECT COUNT(*) FROM restaurants 
@@ -174,7 +174,7 @@ FROM orders
 GROUP BY 1, 2
 ORDER BY 3 DESC
 ```
-**Q3. find the average order value per customer who has place more than 750 orders, return customer name and order average value**    
+**Q3. find the average order value per customers who have placed more than 750 orders, return customer name and order average value**    
 ```sql
 SELECT 
 c.customer_name,
@@ -198,7 +198,7 @@ GROUP BY 1,2
 HAVING SUM(o.order_amount) > 100000 
 ORDER BY SUM(o.order_amount) DESC
 ```
-**Q5. write a query to find orders that  were placed but not delivere, return each Restaurant name, city and number of not delivered orders**   
+**Q5. write a query to find orders that  were placed but not delivered, return each Restaurant name, city and number of not delivered orders**   
 ```sql
 SELECT 
 r.restaurant_name, 
@@ -211,9 +211,10 @@ WHERE d.delivery_id  IS NULL
 GROUP BY 1,2 
 ORDER BY 3 DESC
 ```
-**Q6. ank restaurants by their total revenue from the last year, including their name, total revenu and rank within their city (this time we will use a CTE ) 
-WITH ranking_table AS**  
+**Q6. rank restaurants by their total revenue from the last year, including their name, total revenu and rank within their city**  
 ```sql
+--(this time we will use a CTE )WITH ranking_table AS 
+
 WITH ranking_table AS
 (
 SELECT 
@@ -252,7 +253,7 @@ AND
 customer_id NOT IN (SELECT DISTINCT customer_id FROM orders 
 WHERE EXTRACT (YEAR FROM order_date) = 2024)
 ```
-**Q9. calculate and compare the order cancllation rate for each restaurant between the current date and the previous year**  
+**Q9. calculate and compare the order cancellation rate for each restaurant between the current date and the previous year**  
 ```sql
 WITH cancel_ratio_2023 AS (
     SELECT 
@@ -352,7 +353,7 @@ FROM
 growth_ratio --in this question i'll have each restaurant with month column, current_month_sales, last month_sales and growth ratio 
 ORDER BY restaurant_id, month;
 ```
-**Q.12 Segmnt customers into 'Gold', 'Silver' groups based on their total spendings, label them as golds otherwise label them as silvers write a segment query to determine each segment's total number of orders and total revenu**  
+**Q.12 Segment customers into 'Gold', 'Silver' groups based on their total spendings, label them as golds otherwise label them as silvers write a segment query to determine each segment's total number of orders and total revenu**  
 ```sql
 SELECT 
 cx_category, 
@@ -493,7 +494,7 @@ SELECT
    ROUND(MAX(avg_time), 2)
 FROM riders_time    
 ```
-**Q19. rder Item Popularity : track the popularity of specific order items over time and identify seasonal demand spikes**   
+**Q19. order Item Popularity : track the popularity of specific order items over time and identify seasonal demand spikes**   
 ```sql
 SELECT 
 order_item, 
